@@ -6,6 +6,25 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      runner:
+        description: "Which test runner to execute?"
+        required: true
+        default: "ALL"
+        type: choice
+        options:
+          - ALL
+          - AE
+          - BR
+          - CE
+          - Cyber
+          - IA
+          - KNR
+          - MGMT-LIAB
+          - ML-PRIVATE
+          - Raven
+          - RE
+          - StorageTank
 
 jobs:
   robot-tests:
@@ -44,12 +63,29 @@ jobs:
         run: |
           allure --version
 
-      - name: Run Robot Framework tests
-        working-directory: Src\Regression\Run_all_LOBs
+      # Run selected test runner based on user input
+      - name: Run selected test runner
+        shell: pwsh
         run: |
-          python Execute_All_LOB.py
+          $runner = "${{ github.event.inputs.runner }}"
 
-      # IMPORTANT: point to the correct allure-results folder (often created in working dir)
+          switch ($runner) {
+            "ALL"         { Set-Location "Src\Regression\Run_all_LOBs"; python Execute_All_LOB.py }
+            "AE"          { Set-Location "Src\Regression\AE"; python AE_Execution.py }
+            "BR"          { Set-Location "Src\Regression\BR"; python BR_Execution.py }
+            "CE"          { Set-Location "Src\Regression\CE"; python CE_Execution.py }
+            "Cyber"       { Set-Location "Src\Regression\Cyber"; python Cyber_Execution.py }
+            "IA"          { Set-Location "Src\Regression\IA"; python IA_Execution.py }
+            "KNR"         { Set-Location "Src\Regression\KNR"; python KNR_Execution.py }
+            "MGMT-LIAB"   { Set-Location "Src\Regression\MGMT-LIAB"; python ML_NFP_PNB_Execution.py }
+            "ML-PRIVATE"  { Set-Location "Src\Regression\ML-PRIVATE"; python ML_Private_Execution.py }
+            "Raven"       { Set-Location "Src\Regression\Raven"; python Raven_Execution.py }
+            "RE"          { Set-Location "Src\Regression\RE"; python RE_Execution.py }
+            "StorageTank" { Set-Location "Src\Regression\StorageTank"; python ST_Execution.py }
+            default       { Write-Error "Invalid runner selection"; exit 1 }
+          }
+
+      # Generate Allure HTML report (points to ALL runner output folder; adjust if per-LOB outputs differ)
       - name: Generate Allure Report
         if: always()
         run: |
