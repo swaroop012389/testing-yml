@@ -21,7 +21,15 @@ on:
           - Raven
           - RE
           - StorageTank
-
+          - Alternus-ROBOT
+          - TMS
+          - TMS-BR
+          - TMS-Cyber
+          - TMS-MGMT-Non-Profit
+          - TMS-MGMT-Pvt
+          - TMS-REO
+          - TMS-SAE
+          - UW-RE
 jobs:
   robot-tests:
     runs-on: windows-latest
@@ -78,6 +86,70 @@ jobs:
             "Raven"       { Set-Location "Src\Regression\Raven"; python Raven_Execution.py }
             "RE"          { Set-Location "Src\Regression\RE"; python RE_Execution.py }
             "StorageTank" { Set-Location "Src\Regression\StorageTank"; python ST_Execution.py }
+          
+            "Alternus-ROBOT" {
+                robot `
+                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --outputdir Src\Regression\Run_all_LOBs `
+                  Src\Regression\Alternus
+            }
+
+            "TMS" {
+                robot `
+                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --outputdir Src\Regression\Run_all_LOBs `
+                  Src\Regression\TMS
+            }
+
+            "TMS-BR" {
+                robot `
+                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --outputdir Src\Regression\Run_all_LOBs `
+                  Src\Regression\TMS\TMS_BR
+            }
+
+            "TMS-Cyber" {
+                robot `
+                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --outputdir Src\Regression\Run_all_LOBs `
+                  Src\Regression\TMS\TMS_CYBER
+            }
+
+            "TMS-MGMT-Non-Profit" {
+                robot `
+                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --outputdir Src\Regression\Run_all_LOBs `
+                  Src\Regression\TMS\TMS_MGMT_NON_PROFIT
+            }
+
+            "TMS-MGMT-Pvt" {
+                robot `
+                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --outputdir Src\Regression\Run_all_LOBs `
+                  Src\Regression\TMS\TMS_MGMT_PVT
+            }
+
+            "TMS-REO" {
+                robot `
+                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --outputdir Src\Regression\Run_all_LOBs `
+                  Src\Regression\TMS\TMS_REO
+            }
+
+             "TMS-SAE" {
+                robot `
+                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --outputdir Src\Regression\Run_all_LOBs `
+                  Src\Regression\TMS\TMS_SAE
+            }
+
+            "UW-RE" {
+                robot `
+                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --outputdir Src\Regression\Run_all_LOBs `
+                  Src\Regression\UW\RE
+            }
+
             default       { Write-Error "Invalid runner selection"; exit 1 }
           }
 
