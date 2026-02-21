@@ -88,10 +88,11 @@ jobs:
             "StorageTank" { Set-Location "Src\Regression\StorageTank"; python ST_Execution.py }
           
             "Alternus" {
+                Set-Location "Src\Regression\Alternus"
                 robot `
-                  --listener "allure_robotframework;Src\Regression\Run_all_LOBs\allure-results" `
-                  --outputdir Src\Regression\Run_all_LOBs `
-                  Src\Regression\Alternus
+                  --listener "allure_robotframework;..\Run_all_LOBs\allure-results" `
+                  --outputdir ..\Run_all_LOBs `
+                  .
             }
 
             "TMS" {
