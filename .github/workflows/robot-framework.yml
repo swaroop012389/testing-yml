@@ -21,7 +21,7 @@ on:
           - Raven
           - RE
           - StorageTank
-          - Alternus-ROBOT
+          - Alternus
           - TMS
           - TMS-BR
           - TMS-Cyber
@@ -87,7 +87,7 @@ jobs:
             "RE"          { Set-Location "Src\Regression\RE"; python RE_Execution.py }
             "StorageTank" { Set-Location "Src\Regression\StorageTank"; python ST_Execution.py }
           
-            "Alternus-ROBOT" {
+            "Alternus" {
                 robot `
                   --listener "allure_robotframework;Src\Regression\Run_all_LOBs\allure-results" `
                   --outputdir Src\Regression\Run_all_LOBs `
