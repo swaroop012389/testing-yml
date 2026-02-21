@@ -2,6 +2,7 @@ import openpyxl
 import subprocess
 import os
 import shutil
+import sys 
 from pathlib import Path
 
 def read_master_sheet(sheet_path):
@@ -57,9 +58,10 @@ def execute_tests_in_parallel(test_files, processes, output_folder, allure_resul
 
     except subprocess.CalledProcessError as e:
         print(f"Error during execution: {e}")
+        sys.exit(e.returncode)     # <-- FAIL CI when tests fail
     except FileNotFoundError as e:
         print(f"Pabot not found: {e}")
-
+        sys.exit(1)               # <-- FAIL CI when pabot is missing
 def move_output_files(destination_folder):
     """ Moves Robot Framework output files to the specified folder. """
     try:
@@ -102,9 +104,10 @@ def generate_allure_report(allure_results_folder):
 
     except subprocess.CalledProcessError as e:
         print(f"Error generating Allure report: {e}")
+        sys.exit(e.returncode)     # <-- FAIL CI when tests fail
     except FileNotFoundError as e:
         print(f"Allure not found: {e}. Ensure Allure is installed and in your PATH.")
-
+        sys.exit(1)               # <-- FAIL CI when pabot is missing
 if __name__ == "__main__":
     master_sheets = [
                       "K&R_MasterSheet.xlsx",
@@ -124,6 +127,7 @@ if __name__ == "__main__":
 
     if not all_test_files:
         print("No test files marked as 'Yes' to execute. Exiting.")
+        sys.exit(1)   # <-- FAIL CI if nothing ran
     else:
         processes = 1
         execute_tests_in_parallel(all_test_files, processes, output_folder, allure_results_folder)

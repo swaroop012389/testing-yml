@@ -92,9 +92,10 @@ def generate_allure_report(allure_results_folder):
         print("To view the report, run: allure serve allure-report")
     except subprocess.CalledProcessError as e:
         print(f"Error generating Allure report: {e}")
+        sys.exit(e.returncode)     # <-- FAIL CI when tests fail
     except FileNotFoundError as e:
         print(f"Allure not found: {e}. Ensure Allure is installed and in your PATH.")
-
+        sys.exit(1)               # <-- FAIL CI when pabot is missing
 # ==========================================================
 #               MOVE OUTPUT FILES
 # ==========================================================

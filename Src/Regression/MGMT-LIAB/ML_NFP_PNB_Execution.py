@@ -2,6 +2,7 @@ import openpyxl
 import subprocess
 import os
 import shutil
+import sys 
 from pathlib import Path
 
 def read_master_sheet(sheet_path):
@@ -125,6 +126,7 @@ if __name__ == "__main__":
 
     if not all_test_files:
         print("No test files marked as 'Yes' to execute. Exiting.")
+        sys.exit(1)   # <-- FAIL CI if nothing ran
     else:
         processes = 1
         execute_tests_in_parallel(all_test_files, processes, output_folder, allure_results_folder)
