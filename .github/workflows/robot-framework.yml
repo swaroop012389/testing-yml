@@ -28,9 +28,11 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Install Allure CLI
+      - name: Install Allure CLI (manual)
         run: |
-          choco install allure -y
+          curl -L -o allure.zip https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.zip
+          tar -xf allure.zip
+          echo "%CD%\allure-2.27.0\bin" >> %GITHUB_PATH%
 
       - name: Run Robot Framework tests
         working-directory: Src\Regression\Run_all_LOBs
