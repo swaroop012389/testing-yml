@@ -9,7 +9,7 @@ on:
         default: "ALL"
         type: choice
         options:
-          - ALL
+          - ALL-LOBS
           - AE
           - BR
           - CE
@@ -74,7 +74,7 @@ jobs:
           $runner = "${{ github.event.inputs.runner }}"
 
           switch ($runner) {
-            "ALL"         { Set-Location "Src\Regression\Run_all_LOBs"; python Execute_All_LOB.py }
+            "ALL-LOBS"    { Set-Location "Src\Regression\Run_all_LOBs"; python Execute_All_LOB.py }
             "AE"          { Set-Location "Src\Regression\AE"; python AE_Execution.py }
             "BR"          { Set-Location "Src\Regression\BR"; python BR_Execution.py }
             "CE"          { Set-Location "Src\Regression\CE"; python CE_Execution.py }
@@ -96,59 +96,67 @@ jobs:
             }
 
             "TMS" {
+                Set-Location "Src\Regression\TMS"
                 robot `
-                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --listener allure_robotframework;..\Run_all_LOBs\allure-results `
                   --outputdir Src\Regression\Run_all_LOBs `
-                  Src\Regression\TMS
+                  .
             }
 
             "TMS-BR" {
+                Set-Location "Src\Regression\TMS\TMS_BR"
                 robot `
-                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --listener allure_robotframework;..\Run_all_LOBs\allure-results `
                   --outputdir Src\Regression\Run_all_LOBs `
-                  Src\Regression\TMS\TMS_BR
+                  .
             }
 
             "TMS-Cyber" {
+                Set-Location "Src\Regression\TMS\TMS_CYBER"
                 robot `
-                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --listener allure_robotframework;..\Run_all_LOBs\allure-results `
                   --outputdir Src\Regression\Run_all_LOBs `
-                  Src\Regression\TMS\TMS_CYBER
+                  .
             }
 
             "TMS-MGMT-Non-Profit" {
+                Set-Location "Src\Regression\TMS\TMS_MGMT_NON_PROFIT"
                 robot `
-                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --listener allure_robotframework;..\Run_all_LOBs\allure-results `
                   --outputdir Src\Regression\Run_all_LOBs `
-                  Src\Regression\TMS\TMS_MGMT_NON_PROFIT
+                  .
             }
 
             "TMS-MGMT-Pvt" {
+                Set-Location "Src\Regression\TMS\TMS_MGMT_PVT"
                 robot `
-                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --listener allure_robotframework;..\Run_all_LOBs\allure-results `
                   --outputdir Src\Regression\Run_all_LOBs `
-                  Src\Regression\TMS\TMS_MGMT_PVT
+                  .
             }
 
             "TMS-REO" {
+                Set-Location "Src\Regression\TMS_REO"
                 robot `
-                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --listener allure_robotframework;..\Run_all_LOBs\allure-results `
                   --outputdir Src\Regression\Run_all_LOBs `
-                  Src\Regression\TMS\TMS_REO
+                  .
             }
 
              "TMS-SAE" {
+                Set-Location "Src\Regression\TMS_SAE"
                 robot `
-                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --listener allure_robotframework;..\Run_all_LOBs\allure-results `
                   --outputdir Src\Regression\Run_all_LOBs `
-                  Src\Regression\TMS\TMS_SAE
+                  .
             }
 
             "UW-RE" {
+                Set-Location "Src\Regression\UW\RE"
                 robot `
-                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --listener allure_robotframework;..\Run_all_LOBs\allure-results `
                   --outputdir Src\Regression\Run_all_LOBs `
-                  Src\Regression\UW\RE
+                  .
             }
 
             default       { Write-Error "Invalid runner selection"; exit 1 }
