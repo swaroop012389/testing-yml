@@ -6,7 +6,7 @@ on:
       runner:
         description: "Which test runner to execute?"
         required: true
-        default: "ALL"
+        default: "ALL-LOBS"
         type: choice
         options:
           - ALL-LOBS
