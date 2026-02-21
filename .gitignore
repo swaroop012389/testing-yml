@@ -1,0 +1,15 @@
+*.png
+*.xml
+*.html
+*.pyc
+*.log
+*.csv
+workspace.xml
+log.html
+output.xml
+allure-results/
+allure-report/
+pabot-results/
+*.out
+*.json
+*.pabotsuitenames

@@ -1,0 +1,5 @@
+@ECHO OFF
+
+robot TC_TMS_NON_PROFIT.robot
+
+PAUSE

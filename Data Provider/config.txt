@@ -1,0 +1,54 @@
+[V2]
+uat_url = http://usdf11v0878/VictorNonProdAppDashboard/
+qa_url = http://usdf11v0878/VictorNonProdAppDashboard/Home/QA
+one_val_url = https://stage.www.victorinsurance.ca/us/login.html
+Target = UAT
+Headless = No
+email = Krishna.Pawar@victorinsurance.com
+agent_email = Michael.e.abraham@schinnerer.com
+
+[UMS]
+url = https://model.ums.us.victorinsurance.com/Nexus/MultiSearch
+[TMS]
+url = https://model.ums.us.victorinsurance.com/TMS
+
+[Path]
+RE = ..\..\..\Test Data\Regression\RE
+REO = ..\..\..\Test Data\Regression\REO_Broker
+RE_DS = ..\..\..\Test Data\DataSuite\RE
+ALT = ..\..\..\Test Data\Regression\Alternus
+NONPROFIT = ..\..\..\..\Test Data\DataSuite\MGMT-LIAB\Non-Profit_States
+NONPROFIT_MOD = ..\..\..\..\Test Data\DataSuite\MGMT-LIAB\Non-Profit_Modifiers
+NONPROFIT_ORG = ..\..\..\..\Test Data\DataSuite\MGMT-LIAB\Non-Profit_OrganizationTypes
+ML_PRIV = ..\..\..\..\Test Data\Regression\MGMT-LIAB\ML_Private
+ML-PRIVATE = ..\..\..\Test Data\Regression\ML-PRIVATE
+ML_HOLDS = ..\..\..\..\Test Data\Regression\MGMT-LIAB\ML_Holds
+ARN_RE = ..\..\..\Test Data\AutoRenewal\RE
+CYBER = ..\..\..\Test Data\Regression\Cyber
+IA = ..\..\..\Test Data\Regression\IA
+AE = ..\..\..\Test Data\Regression\A&E
+A&E = ..\..\..\Test Data\Regression\A&E
+BR = ..\..\..\Test Data\Regression\BR
+ST = ..\..\..\Test Data\Regression\StorageTank
+CE = ..\..\..\Test Data\Regression\CE
+TMS = ..\..\..\..\Test Data\Regression\TMS\TMS_REO
+SAE = ..\..\..\Test Data\DataSuite\SAE
+KR = ..\..\..\Test Data\Regression\KNR
+MGMT-LIAB_NFP_PNB = ..\..\..\Test Data\Regression\MGMT-LIAB\ML_NFP_PNB
+RAVEN = ..\..\..\Test Data\Regression\Raven
+TMS_MGMT_NP = ..\..\..\..\Test Data\Regression\TMS\TMS_MGMT_NON_PROFIT
+TMS_MGMT_PVT = ..\..\..\..\Test Data\Regression\TMS\TMS_MGMT_PRIVATE
+TMS_BR = ..\..\..\..\Test Data\Regression\TMS\TMS_BR
+TMS_SAE = ..\..\..\..\Test Data\Regression\TMS\TMS_SAE
+TMS_MGMT_PR = ..\..\..\..\Test Data\Regression\TMS\TMS_MGMT_PRIVATE
+TMS_CR= ..\..\..\..\Test Data\Regression\TMS\TMS_CYBER
+UW = ..\..\..\..\Test Data\Regression\UW\UW_RE
+
+[Dashboard]
+http://app.us.victorinsurance.com/VictorNonProdAppDashboard
+[UAT-UMS]
+http://model.ums.us.victorinsurance.com/Nexus/MultiSearch
+[QA1-UMS]
+http://qa.ums.us.victorinsurance.com/Nexus/MultiSearch
+[QA2-UMS]
+http://qa2.ums.us.victorinsurance.com/Nexus/MultiSearch
