@@ -1,6 +1,7 @@
 import os
 import shutil
 import subprocess
+import sys 
 from pathlib import Path
 # import requests
 import openpyxl
@@ -69,8 +70,10 @@ def execute_tests(test_files, processes, output_folder, allure_results_folder):
 
     except subprocess.CalledProcessError as e:
         print(f"[ERROR] Test execution failed: {e}")
+        sys.exit(e.returncode)   # <-- FAIL THE CI JOB
     except FileNotFoundError:
         print("[ERROR] Pabot not found! Install using: pip install pabot")
+        sys.exit(1)             # <-- FAIL THE CI JOB
 
 def generate_allure_report(allure_results_folder):
     """ Generates an Allure report from test results. """
