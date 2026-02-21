@@ -89,7 +89,7 @@ jobs:
           
             "Alternus-ROBOT" {
                 robot `
-                  --listener allure_robotframework;Src\Regression\Run_all_LOBs\allure-results `
+                  --listener "allure_robotframework;Src\Regression\Run_all_LOBs\allure-results" `
                   --outputdir Src\Regression\Run_all_LOBs `
                   Src\Regression\Alternus
             }
