@@ -28,21 +28,32 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Install Allure CLI (manual)
+      # Reliable Allure install for Windows runner
+      - name: Install Allure CLI (Windows)
+        shell: pwsh
         run: |
-          curl -L -o allure.zip https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.zip
-          tar -xf allure.zip
-          echo "%CD%\allure-2.27.0\bin" >> %GITHUB_PATH%
+          $allureVersion = "2.27.0"
+          $zip = "allure-$allureVersion.zip"
+          $url = "https://github.com/allure-framework/allure2/releases/download/$allureVersion/allure-$allureVersion.zip"
+
+          Invoke-WebRequest -Uri $url -OutFile $zip
+          Expand-Archive -Path $zip -DestinationPath .
+          Add-Content $env:GITHUB_PATH "$PWD\allure-$allureVersion\bin"
+
+      - name: Check Allure version
+        run: |
+          allure --version
 
       - name: Run Robot Framework tests
         working-directory: Src\Regression\Run_all_LOBs
         run: |
           python Execute_All_LOB.py
 
+      # IMPORTANT: point to the correct allure-results folder (often created in working dir)
       - name: Generate Allure Report
         if: always()
         run: |
-          allure generate allure-results -o allure-report --clean
+          allure generate Src\Regression\Run_all_LOBs\allure-results -o allure-report --clean
 
       - name: Upload Allure Report
         if: always()
